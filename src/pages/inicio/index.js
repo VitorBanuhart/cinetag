@@ -2,11 +2,20 @@ import Banner from "components/Banner";
 import Card from "components/Card";
 import Titulo from "components/Titulo";
 import styles from "./Inicio.module.css"
-import videos from "json/db.json"
+import { useEffect, useState } from "react";
 
 function Inicio() {
-    return (
+    const [videos, setVideos] = useState([]);
 
+    useEffect(() => {
+        fetch('https://my-json-server.typicode.com/vitorbanuhart/cinetag-api/videos')
+        .then(resposta => resposta.json())
+        .then(dados => {
+            setVideos(dados);
+        })
+    })
+
+    return (
         <>
             <Banner imagem="home"/>
             <Titulo>
